@@ -19,7 +19,12 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--background-light);
+    /* Fundo do site com textura sutil */
+    background-color: #f8f8f8; /* Cor de fallback caso a imagem não carregue */
+    background-image: url('https://www.transparenttextures.com/patterns/light-paper-fibers.png'); /* Textura de fibras de papel */
+    background-repeat: repeat;
+    background-attachment: fixed; /* Efeito de paralaxe no fundo geral */
+
     color: var(--primary-medium);
     line-height: 1.6;
     overflow-x: hidden; /* Garante que não haverá barra de rolagem horizontal */
@@ -35,7 +40,7 @@ body {
 header {
     background-color: var(--primary-dark);
     color: var(--text-light);
-    padding: 18px 0;
+    padding: 20px 0; /* Aumentei um pouco o padding vertical */
     box-shadow: 0 4px 12px var(--shadow-deep); /* Sombra mais forte para o header */
     position: sticky;
     top: 0;
@@ -51,12 +56,14 @@ header .container {
 
 header h1 {
     margin: 0;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2em;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--text-light); /* Garante que o texto "EFN Engenharia" seja claro */
-    /* Removido display:flex e gap que eram para o logo */
+    display: flex;
+    align-items: center;
+}
+
+header h1 .header-logo {
+    height: 80px; /* AUMENTADO: Tamanho padrão do logo para desktop */
+    width: auto;
+    vertical-align: middle; /* Garante alinhamento */
 }
 
 nav ul {
@@ -108,10 +115,11 @@ section {
     text-align: center;
     position: relative;
     z-index: 1;
+    background-color: var(--background-white); /* Garante que seções tenham fundo sólido sobre a textura do body */
 }
 
 section:nth-of-type(even) {
-    background-color: var(--background-light);
+    background-color: var(--background-light); /* Fundo mais claro para seções pares */
 }
 
 h2 {
@@ -247,17 +255,20 @@ h2::after {
 
 /* Seção Sobre Mim */
 #sobre {
-    background-color: var(--background-light);
+    background-color: var(--background-light); /* Mantém o fundo definido para seções ímpares */
     padding: 100px 0;
 }
 
 #sobre .sobre-content {
     display: flex;
-    align-items: center;
-    gap: 80px;
+    align-items: center; /* Alinha verticalmente imagem e texto */
+    gap: 50px; /* Aumentei um pouco o gap para mais espaçamento */
     text-align: left;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: wrap; /* Permite que a imagem e o texto quebrem linha */
+    justify-content: center; /* Centraliza horizontalmente quando quebra */
+    max-width: 1000px; /* Limita a largura do container de conteúdo para melhor legibilidade */
+    margin: 0 auto; /* Centraliza o container de conteúdo na tela */
+    padding: 0 20px; /* Adiciona padding interno para evitar que o conteúdo grude nas bordas */
 }
 
 #sobre .sobre-content img {
@@ -267,7 +278,7 @@ h2::after {
     border-radius: 50%;
     border: 10px solid var(--accent-blue);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0;
+    flex-shrink: 0; /* Impede que a imagem encolha */
     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.5s ease;
 }
 
@@ -277,17 +288,18 @@ h2::after {
 }
 
 #sobre .sobre-content p {
-    font-size: 1.25em; /* Texto más grande */
+    font-size: 1.25em;
     color: var(--primary-medium);
     text-align: justify;
-    flex: 1;
-    max-width: 700px;
-    line-height: 1.8; /* Mejor legibilidad */
+    flex: 1; /* Permite que o parágrafo ocupe o espaço restante */
+    min-width: 320px; /* Garante uma largura mínima para o texto, evitando linhas muito curtas */
+    max-width: 650px; /* Aumentei a largura máxima do texto para mais fluidez */
+    line-height: 1.8;
 }
 
 /* Seção Contato */
 #contato {
-    background-color: var(--primary-dark);
+    background-color: var(--primary-dark); /* Mantém o fundo escuro */
     color: var(--text-light);
     padding: 100px 0;
 }
@@ -351,7 +363,7 @@ footer p {
         font-size: 3em;
     }
     #hero h2 {
-        font-size: 4em; /* Ajuste para tablets */
+        font-size: 4em;
     }
     #hero p {
         font-size: 1.6em;
@@ -361,7 +373,10 @@ footer p {
         gap: 30px;
     }
     #sobre .sobre-content {
-        gap: 50px;
+        gap: 30px;
+    }
+    header h1 .header-logo {
+        height: 65px; /* Ajuste do logo para telas médias */
     }
 }
 
@@ -386,7 +401,7 @@ footer p {
         font-size: 2.5em;
     }
     #hero h2 {
-        font-size: 3.2em; /* Ajuste para celulares mayores */
+        font-size: 3.2em;
     }
     #hero p {
         font-size: 1.3em;
@@ -402,16 +417,24 @@ footer p {
         font-size: 1.7em;
     }
     #sobre .sobre-content {
-        flex-direction: column;
+        flex-direction: column; /* Força quebra de linha para imagem e texto */
         text-align: center;
     }
     #sobre .sobre-content img {
-        max-width: 280px; /* Ajuste para celular */
+        max-width: 280px;
         height: 280px;
-        margin-bottom: 20px;
+        margin-bottom: 20px; /* Espaçamento abaixo da imagem quando empilhada */
+    }
+    #sobre .sobre-content p {
+        max-width: 90%; /* Permite que o texto ocupe mais largura em telas menores */
+        min-width: unset; /* Remove min-width para celular */
+        font-size: 1.1em;
     }
     .contato-info p {
         font-size: 1.4em;
+    }
+    header h1 .header-logo {
+        height: 55px; /* Ajuste do logo para telas menores (ex: tablets em retrato, celulares maiores) */
     }
 }
 
@@ -440,5 +463,8 @@ footer p {
     }
     .contato-info p {
         font-size: 1.2em;
+    }
+    header h1 .header-logo {
+        height: 45px; /* Ajuste do logo para celulares pequenos */
     }
 }
