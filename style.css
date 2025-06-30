@@ -1,0 +1,444 @@
+/* Importação de fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@700&display=swap');
+
+/* Variáveis de cores */
+:root {
+    --primary-dark: #202b37;    /* Azul chumbo muito escuro - para background de header/footer */
+    --primary-medium: #2c3e50;  /* Azul chumbo médio - para textos principais */
+    --accent-blue: #3498db;     /* Azul vibrante - para botões e detalhes */
+    --accent-green: #2ecc71;    /* Verde esmeralda brilhante - para hover, pode ser usado para destaque */
+    --background-light: #ecf0f1;/* Fundo mais claro para seções */
+    --background-white: #ffffff;/* Fundo branco para cards e elementos */
+    --text-light: #fdfefe;      /* Texto claro */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Sombra mais sutil */
+    --shadow-medium: rgba(0, 0, 0, 0.12); /* Sombra mais visível */
+    --shadow-deep: rgba(0, 0, 0, 0.25); /* Sombra mais pronunciada */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--primary-medium);
+    line-height: 1.6;
+    overflow-x: hidden; /* Garante que não haverá barra de rolagem horizontal */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-dark);
+    color: var(--text-light);
+    padding: 18px 0;
+    box-shadow: 0 4px 12px var(--shadow-deep); /* Sombra mais forte para o header */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text-light); /* Garante que o texto "EFN Engenharia" seja claro */
+    /* Removido display:flex e gap que eram para o logo */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 35px;
+}
+
+nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1.1em;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+nav ul li a:hover {
+    color: var(--accent-blue);
+    transform: translateY(-3px); /* Efeito de levantamento mais pronunciado */
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent-blue);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Curva de animação mais suave */
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Seções Gerais */
+section {
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+section:nth-of-type(even) {
+    background-color: var(--background-light);
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    color: var(--primary-dark);
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 15px;
+    font-weight: 700;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 120px;
+    height: 5px;
+    background-color: var(--accent-blue);
+    border-radius: 3px;
+}
+
+/* Seção Hero - Imagem de Fundo de Alta Qualidade */
+#hero {
+    background: linear-gradient(rgba(32, 43, 55, 0.75), rgba(32, 43, 55, 0.75)), /* Overlay mais escuro */
+                url('https://images.unsplash.com/photo-1542845115-ff9613531f8f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+    color: var(--text-light);
+    padding: 180px 0;
+    height: auto;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Necessário para o efeito de paralaxe */
+    background-attachment: fixed; /* Efeito de paralaxe */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); } /* Início um pouco mais baixo */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#hero h2 {
+    font-size: 4.8em; /* Título ainda maior */
+    color: var(--text-light);
+    line-height: 1.1;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Sombra no texto do hero */
+}
+
+#hero h2::after {
+    background-color: var(--text-light);
+}
+
+#hero p {
+    font-size: 1.9em; /* Texto um pouco maior */
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    font-weight: 300;
+    opacity: 0.95; /* Um pouco menos transparente */
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--accent-blue);
+    color: var(--text-light);
+    padding: 20px 50px; /* Botão ainda maior */
+    text-decoration: none;
+    border-radius: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1.3em; /* Texto do botão maior */
+    transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 8px 20px var(--shadow-medium); /* Sombra mais pronunciada no botão */
+    border: none;
+}
+
+.button:hover {
+    background-color: var(--accent-green);
+    transform: translateY(-8px); /* Efeito de levantamento mais forte */
+    box-shadow: 0 15px 35px var(--shadow-deep); /* Sombra mais intensa no hover */
+}
+
+/* Seção Serviços/Laudos */
+.servicos-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 45px; /* Más espaciado entre los cards */
+    margin-top: 60px;
+}
+
+.servico-item {
+    background-color: var(--background-white);
+    padding: 40px;
+    border-radius: 15px; /* Borde más redondeado */
+    box-shadow: 0 12px 30px var(--shadow-light); /* Sombra más visible */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    text-align: left;
+    border-bottom: 6px solid var(--accent-blue); /* Línea de destaque más gruesa */
+}
+
+.servico-item:hover {
+    transform: translateY(-15px); /* Efecto de levantamiento más fuerte */
+    box-shadow: 0 25px 50px var(--shadow-medium); /* Sombra más pronunciada */
+    border-color: var(--accent-green); /* Cambiar color del borde en el hover */
+}
+
+.servico-item h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-dark);
+    font-size: 2.1em; /* Título un poco más grande */
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.servico-item p {
+    font-size: 1.2em; /* Texto del párrafo un poco más grande */
+    color: var(--primary-medium);
+    line-height: 1.7;
+}
+
+/* Seção Sobre Mim */
+#sobre {
+    background-color: var(--background-light);
+    padding: 100px 0;
+}
+
+#sobre .sobre-content {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    text-align: left;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#sobre .sobre-content img {
+    max-width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 10px solid var(--accent-blue);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.5s ease;
+}
+
+#sobre .sobre-content img:hover {
+    transform: scale(1.05) rotate(3deg); /* Zoom y rotación más notables */
+    border-color: var(--accent-green);
+}
+
+#sobre .sobre-content p {
+    font-size: 1.25em; /* Texto más grande */
+    color: var(--primary-medium);
+    text-align: justify;
+    flex: 1;
+    max-width: 700px;
+    line-height: 1.8; /* Mejor legibilidad */
+}
+
+/* Seção Contato */
+#contato {
+    background-color: var(--primary-dark);
+    color: var(--text-light);
+    padding: 100px 0;
+}
+
+#contato h2 {
+    color: var(--text-light);
+    margin-bottom: 50px;
+}
+
+#contato h2::after {
+    background-color: var(--text-light);
+}
+
+.contato-info p {
+    font-size: 1.7em; /* Texto más grande */
+    margin: 20px 0;
+    font-weight: 300;
+}
+
+.contato-info a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contato-info a:hover {
+    color: var(--accent-blue);
+}
+
+.contato-info i {
+    margin-right: 15px;
+    color: var(--accent-blue);
+    font-size: 1.5em; /* Íconos más grandes */
+    transition: color 0.3s ease;
+}
+
+.contato-info a:hover i {
+    color: var(--accent-green);
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--primary-dark);
+    color: var(--text-light);
+    text-align: center;
+    padding: 35px 0; /* Más padding en el rodapé */
+    box-shadow: 0 -4px 12px var(--shadow-deep);
+    position: relative;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1em; /* Texto ligeramente más grande */
+    opacity: 0.9; /* Un poco menos transparente */
+}
+
+/* Responsividade de Ponta */
+@media (max-width: 1024px) {
+    h2 {
+        font-size: 3em;
+    }
+    #hero h2 {
+        font-size: 4em; /* Ajuste para tablets */
+    }
+    #hero p {
+        font-size: 1.6em;
+    }
+    .servicos-lista {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    #sobre .sobre-content {
+        gap: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    nav ul {
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    nav ul li {
+        margin: 10px 0;
+    }
+    section {
+        padding: 80px 0;
+    }
+    h2 {
+        font-size: 2.5em;
+    }
+    #hero h2 {
+        font-size: 3.2em; /* Ajuste para celulares mayores */
+    }
+    #hero p {
+        font-size: 1.3em;
+    }
+    .button {
+        padding: 15px 35px;
+        font-size: 1.1em;
+    }
+    .servico-item {
+        padding: 30px;
+    }
+    .servico-item h3 {
+        font-size: 1.7em;
+    }
+    #sobre .sobre-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    #sobre .sobre-content img {
+        max-width: 280px; /* Ajuste para celular */
+        height: 280px;
+        margin-bottom: 20px;
+    }
+    .contato-info p {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    #hero {
+        padding: 120px 0;
+    }
+    #hero h2 {
+        font-size: 2.5em;
+    }
+    #hero p {
+        font-size: 1.1em;
+    }
+    .button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    .servico-item h3 {
+        font-size: 1.5em;
+    }
+    .contato-info p {
+        font-size: 1.2em;
+    }
+}
