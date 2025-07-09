@@ -1,71 +1,144 @@
-/* Importação de fontes do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@700&display=swap');
+/* Importação de fontes (Open Sans e Lato para um visual moderno) */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap');
 
-/* Variáveis de cores */
+/* Variáveis CSS para facilitar a manutenção de cores e tamanhos */
 :root {
-    --primary-dark: #202b37;    /* Azul chumbo muito escuro - para background de header/footer */
-    --primary-medium: #2c3e50;  /* Azul chumbo médio - para textos principais */
-    --accent-blue: #3498db;     /* Azul vibrante - para botões e detalhes */
-    --accent-green: #2ecc71;    /* Verde esmeralda brilhante - para hover, pode ser usado para destaque */
-    --background-light: #ecf0f1;/* Fundo mais claro para seções */
-    --background-white: #ffffff;/* Fundo branco para cards e elementos */
-    --text-light: #fdfefe;      /* Texto claro */
-    --shadow-light: rgba(0, 0, 0, 0.05); /* Sombra mais sutil */
-    --shadow-medium: rgba(0, 0, 0, 0.12); /* Sombra mais visível */
-    --shadow-deep: rgba(0, 0, 0, 0.25); /* Sombra mais pronunciada */
+    --primary-blue: #007bff;        /* Azul vibrante principal */
+    --dark-blue: #022b3a;           /* Azul muito escuro para seções/texto principal */
+    --light-gray: #f8f8f8;          /* Fundo claro para seções */
+    --medium-gray: #e9ecef;         /* Borda e fundo mais suaves */
+    --text-dark: #343a40;           /* Texto escuro padrão */
+    --text-light: #ffffff;          /* Texto claro */
+    --accent-green: #28a745;        /* Verde para destaque/hover (se necessário) */
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.2);
+    --border-radius: 5px;
 }
 
+/* Reset básico e tipografia global */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif; /* Fonte principal para o corpo */
     margin: 0;
     padding: 0;
-    /* Fundo do site com textura sutil */
-    background-color: #f8f8f8; /* Cor de fallback caso a imagem não carregue */
-    background-image: url('https://www.transparenttextures.com/patterns/light-paper-fibers.png'); /* Textura de fibras de papel */
-    background-repeat: repeat;
-    background-attachment: fixed; /* Efeito de paralaxe no fundo geral */
-
-    color: var(--primary-medium);
     line-height: 1.6;
-    overflow-x: hidden; /* Garante que não haverá barra de rolagem horizontal */
+    color: var(--text-dark);
+    background-color: var(--light-gray);
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
 }
 
+/* Container para centralizar o conteúdo */
 .container {
-    max-width: 1200px;
+    max-width: 1140px; /* Largura máxima para desktop */
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px; /* Padding nas laterais para não colar nas bordas */
 }
 
-/* Header */
-header {
-    background-color: var(--primary-dark);
+/* Padding padrão para todas as seções */
+.section-padding {
+    padding: 80px 0;
+}
+
+/* Estilo para títulos principais (h1, h2, etc.) */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato', sans-serif; /* Fonte para títulos */
+    color: var(--dark-blue);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Estilo específico para h2 (títulos de seção) */
+h2 {
+    font-size: 2.8em;
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+/* Sublinhado animado para h2 */
+h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-blue);
+    border-radius: 2px;
+}
+
+/* Descrição abaixo dos títulos de seção */
+.section-description {
+    text-align: center;
+    font-size: 1.1em;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilos para botões */
+.button {
+    display: inline-block;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.primary-button {
+    background-color: var(--primary-blue);
     color: var(--text-light);
-    padding: 20px 0; /* Aumentei um pouco o padding vertical */
-    box-shadow: 0 4px 12px var(--shadow-deep); /* Sombra mais forte para o header */
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    border: 2px solid var(--primary-blue);
 }
 
-header .container {
+.primary-button:hover {
+    background-color: var(--dark-blue);
+    border-color: var(--dark-blue);
+    transform: translateY(-2px);
+}
+
+.secondary-button {
+    background-color: transparent;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+}
+
+.secondary-button:hover {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    transform: translateY(-2px);
+}
+
+/* Header (Cabeçalho do site) */
+header {
+    background-color: var(--dark-blue); /* Fundo escuro como na KG Engenharia */
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Fixa o cabeçalho no topo ao rolar */
+    top: 0;
+    z-index: 1000; /* Garante que fique por cima de outros elementos */
+}
+
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Permite quebrar em telas pequenas */
 }
 
-header h1 {
-    margin: 0;
-    display: flex;
-    align-items: center;
-}
-
-header h1 .header-logo {
-    height: 80px; /* AUMENTADO: Tamanho padrão do logo para desktop */
+.logo .header-logo {
+    height: 70px; /* Altura da logo */
     width: auto;
-    vertical-align: middle; /* Garante alinhamento */
 }
 
+/* Navegação */
 nav ul {
     list-style: none;
     padding: 0;
@@ -74,397 +147,530 @@ nav ul {
 }
 
 nav ul li {
-    margin-left: 35px;
+    margin-left: 30px;
 }
 
 nav ul li a {
     color: var(--text-light);
     text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 1.1em;
-    transition: color 0.3s ease, transform 0.3s ease;
+    font-weight: 600;
+    font-size: 1em;
+    padding: 5px 0;
     position: relative;
-    padding-bottom: 8px;
+    transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: var(--accent-blue);
-    transform: translateY(-3px); /* Efeito de levantamento mais pronunciado */
-}
-
+/* Animação de sublinhado ao passar o mouse no menu */
 nav ul li a::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 3px;
-    background-color: var(--accent-blue);
-    bottom: 0;
+    height: 2px;
+    background-color: var(--primary-blue);
+    bottom: -5px;
     left: 50%;
     transform: translateX(-50%);
-    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Curva de animação mais suave */
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--primary-blue);
 }
 
 nav ul li a:hover::after {
     width: 100%;
 }
 
-/* Seções Gerais */
-section {
-    padding: 100px 0;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    background-color: var(--background-white); /* Garante que seções tenham fundo sólido sobre a textura do body */
-}
-
-section:nth-of-type(even) {
-    background-color: var(--background-light); /* Fundo mais claro para seções pares */
-}
-
-h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5em;
-    color: var(--primary-dark);
-    margin-bottom: 50px;
-    position: relative;
-    padding-bottom: 15px;
-    font-weight: 700;
-}
-
-h2::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
-    width: 120px;
-    height: 5px;
-    background-color: var(--accent-blue);
-    border-radius: 3px;
-}
-
-/* Seção Hero - Imagem de Fundo de Alta Qualidade */
-#hero {
-    background: linear-gradient(rgba(32, 43, 55, 0.75), rgba(32, 43, 55, 0.75)), /* Overlay mais escuro */
-                url('https://images.unsplash.com/photo-1542845115-ff9613531f8f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
-    color: var(--text-light);
-    padding: 180px 0;
-    height: auto;
-    min-height: 600px;
+/* Hero Section (Seção de Destaque/Banner Principal) */
+.hero-section {
+    /* Mantenho apenas o gradiente, removendo a imagem de fundo */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+    height: 600px; /* Altura padrão da seção */
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative; /* Necessário para o efeito de paralaxe */
-    background-attachment: fixed; /* Efeito de paralaxe */
+    justify-content: flex-start; /* Alinha o conteúdo à esquerda */
+    position: relative;
+    color: var(--text-light);
+    text-align: left;
 }
 
-.hero-content {
+.hero-overlay {
+    /* Continua sem exibição, pois o gradiente já faz a função */
+    display: none;
+}
+
+.hero-content-wrapper {
     position: relative;
-    z-index: 1;
+    z-index: 2; /* Garante que o conteúdo fique acima do overlay */
     max-width: 900px;
-    animation: fadeIn 1.5s ease-out forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); } /* Início um pouco mais baixo */
-    to { opacity: 1; transform: translateY(0); }
-}
-
-#hero h2 {
-    font-size: 4.8em; /* Título ainda maior */
-    color: var(--text-light);
-    line-height: 1.1;
-    margin-bottom: 30px;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Sombra no texto do hero */
-}
-
-#hero h2::after {
-    background-color: var(--text-light);
-}
-
-#hero p {
-    font-size: 1.9em; /* Texto um pouco maior */
-    max-width: 800px;
-    margin: 0 auto 50px auto;
-    font-weight: 300;
-    opacity: 0.95; /* Um pouco menos transparente */
-}
-
-.button {
-    display: inline-block;
-    background-color: var(--accent-blue);
-    color: var(--text-light);
-    padding: 20px 50px; /* Botão ainda maior */
-    text-decoration: none;
-    border-radius: 50px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    font-size: 1.3em; /* Texto do botão maior */
-    transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
-    box-shadow: 0 8px 20px var(--shadow-medium); /* Sombra mais pronunciada no botão */
-    border: none;
-}
-
-.button:hover {
-    background-color: var(--accent-green);
-    transform: translateY(-8px); /* Efeito de levantamento mais forte */
-    box-shadow: 0 15px 35px var(--shadow-deep); /* Sombra mais intensa no hover */
-}
-
-/* Seção Serviços/Laudos */
-.servicos-lista {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 45px; /* Más espaciado entre los cards */
-    margin-top: 60px;
-}
-
-.servico-item {
-    background-color: var(--background-white);
-    padding: 40px;
-    border-radius: 15px; /* Borde más redondeado */
-    box-shadow: 0 12px 30px var(--shadow-light); /* Sombra más visible */
-    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-    text-align: left;
-    border-bottom: 6px solid var(--accent-blue); /* Línea de destaque más gruesa */
-}
-
-.servico-item:hover {
-    transform: translateY(-15px); /* Efecto de levantamiento más fuerte */
-    box-shadow: 0 25px 50px var(--shadow-medium); /* Sombra más pronunciada */
-    border-color: var(--accent-green); /* Cambiar color del borde en el hover */
-}
-
-.servico-item h3 {
-    font-family: 'Playfair Display', serif;
-    color: var(--primary-dark);
-    font-size: 2.1em; /* Título un poco más grande */
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-.servico-item p {
-    font-size: 1.2em; /* Texto del párrafo un poco más grande */
-    color: var(--primary-medium);
-    line-height: 1.7;
-}
-
-/* Seção Sobre Mim */
-#sobre {
-    background-color: var(--background-light); /* Mantém o fundo definido para seções ímpares */
-    padding: 100px 0;
-}
-
-#sobre .sobre-content {
-    display: flex;
-    align-items: center; /* Alinha verticalmente imagem e texto */
-    gap: 50px; /* Aumentei um pouco o gap para mais espaçamento */
-    text-align: left;
-    flex-wrap: wrap; /* Permite que a imagem e o texto quebrem linha */
-    justify-content: center; /* Centraliza horizontalmente quando quebra */
-    max-width: 1000px; /* Limita a largura do container de conteúdo para melhor legibilidade */
-    margin: 0 auto; /* Centraliza o container de conteúdo na tela */
-    padding: 0 20px; /* Adiciona padding interno para evitar que o conteúdo grude nas bordas */
-}
-
-#sobre .sobre-content img {
-    max-width: 350px;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 10px solid var(--accent-blue);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0; /* Impede que a imagem encolha */
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.5s ease;
-}
-
-#sobre .sobre-content img:hover {
-    transform: scale(1.05) rotate(3deg); /* Zoom y rotación más notables */
-    border-color: var(--accent-green);
-}
-
-#sobre .sobre-content p {
-    font-size: 1.25em;
-    color: var(--primary-medium);
-    text-align: justify;
-    flex: 1; /* Permite que o parágrafo ocupe o espaço restante */
-    min-width: 320px; /* Garante uma largura mínima para o texto, evitando linhas muito curtas */
-    max-width: 650px; /* Aumentei a largura máxima do texto para mais fluidez */
-    line-height: 1.8;
-}
-
-/* Seção Contato */
-#contato {
-    background-color: var(--primary-dark); /* Mantém o fundo escuro */
-    color: var(--text-light);
-    padding: 100px 0;
-}
-
-#contato h2 {
-    color: var(--text-light);
-    margin-bottom: 50px;
-}
-
-#contato h2::after {
-    background-color: var(--text-light);
-}
-
-.contato-info p {
-    font-size: 1.7em; /* Texto más grande */
-    margin: 20px 0;
-    font-weight: 300;
-}
-
-.contato-info a {
-    color: var(--text-light);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.contato-info a:hover {
-    color: var(--accent-blue);
-}
-
-.contato-info i {
-    margin-right: 15px;
-    color: var(--accent-blue);
-    font-size: 1.5em; /* Íconos más grandes */
-    transition: color 0.3s ease;
-}
-
-.contato-info a:hover i {
-    color: var(--accent-green);
-}
-
-/* Rodapé */
-footer {
-    background-color: var(--primary-dark);
-    color: var(--text-light);
-    text-align: center;
-    padding: 35px 0; /* Más padding en el rodapé */
-    box-shadow: 0 -4px 12px var(--shadow-deep);
-    position: relative;
     width: 100%;
 }
 
+.hero-text-block {
+    padding: 20px;
+    animation: fadeInScale 1s ease-out forwards; /* Animação de entrada */
+}
+
+/* Animação para o texto do Hero */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hero-text-block h1 {
+    font-size: 3.8em;
+    color: var(--text-light);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-text-block p {
+    font-size: 1.5em;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    max-width: 700px;
+}
+
+/* Quem Somos Section */
+.quem-somos-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    text-align: left;
+    justify-content: center;
+}
+
+.quem-somos-text {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+.quem-somos-text h2 {
+    text-align: left; /* Título desta seção alinhado à esquerda */
+    margin-left: 0;
+}
+
+.quem-somos-text h2::after {
+    left: 0; /* Sublinhado do título alinhado à esquerda */
+    transform: translateX(0);
+}
+
+.quem-somos-text p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.quem-somos-image {
+    flex-shrink: 0; /* Impede que a imagem encolha */
+    text-align: center;
+}
+
+.quem-somos-image img {
+    max-width: 380px;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.3s ease;
+}
+
+.quem-somos-image img:hover {
+    transform: scale(1.02); /* Pequeno zoom ao passar o mouse */
+}
+
+/* Serviços Section */
+.light-bg {
+    background-color: var(--light-gray); /* Fundo cinza claro para contraste */
+}
+
+.servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.servico-item {
+    background-color: var(--text-light);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servico-item:hover {
+    transform: translateY(-10px); /* Move para cima ao passar o mouse */
+    box-shadow: var(--shadow-medium);
+}
+
+.servico-item .icon-large {
+    font-size: 3.5em;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.servico-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.servico-item p {
+    font-size: 0.95em;
+    color: #6c757d;
+}
+
+/* Portfólio Section */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.portfolio-item {
+    background-color: var(--text-light);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    overflow: hidden; /* Garante que a imagem não saia dos limites */
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens do portfólio */
+    object-fit: cover; /* Recorta a imagem para preencher o espaço */
+    display: block;
+}
+
+.portfolio-info {
+    padding: 15px;
+}
+
+.portfolio-info h3 {
+    font-size: 1.3em;
+    margin-bottom: 5px;
+}
+
+.portfolio-info p {
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+/* Classe utilitária para margem superior */
+.mt-40 {
+    margin-top: 40px;
+}
+
+/* Depoimentos Section */
+.dark-bg {
+    background-color: var(--dark-blue);
+    color: var(--text-light);
+}
+
+.dark-bg h2 {
+    color: var(--text-light); /* Títulos em branco nesta seção */
+}
+
+.dark-bg h2::after {
+    background-color: var(--primary-blue);
+}
+
+.depoimentos-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Permite quebrar em linhas em telas menores */
+}
+
+.depoimento-item {
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo semi-transparente para o cartão */
+    padding: 30px;
+    border-radius: var(--border-radius);
+    max-width: 400px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.depoimento-item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.depoimento-item .quote {
+    font-size: 1.1em;
+    font-style: italic;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.depoimento-item .author {
+    font-weight: 600;
+    color: var(--primary-blue);
+}
+
+/* Contato Section */
+.contact-content {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: left;
+}
+
+.contact-form-wrapper,
+.contact-info-wrapper {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+}
+
+.contact-form-wrapper h2 {
+    text-align: left;
+    margin-left: 0;
+}
+
+.contact-form-wrapper h2::after {
+    left: 0;
+    transform: translateX(0);
+}
+
+.contact-form-wrapper .section-description {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-blue);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+.contact-info-wrapper h3 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: var(--primary-blue);
+}
+
+.contact-info-wrapper p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info-wrapper p i {
+    margin-right: 15px;
+    color: var(--primary-blue);
+    font-size: 1.3em;
+}
+
+.contact-info-wrapper p a {
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info-wrapper p a:hover {
+    color: var(--primary-blue);
+}
+
+.social-icons {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.social-icons a {
+    color: var(--dark-blue);
+    font-size: 2em;
+    margin-right: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--primary-blue);
+}
+
+.map-placeholder {
+    margin-top: 30px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+}
+/* Estilos para o iframe do Google Maps */
+.map-placeholder iframe {
+    width: 100%;
+    height: 250px;
+    border: 0;
+    filter: grayscale(100%); /* Deixa o mapa em tons de cinza para combinar com o design */
+    transition: filter 0.3s ease;
+}
+
+.map-placeholder iframe:hover {
+    filter: grayscale(0%); /* Colorir ao passar o mouse */
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--dark-blue);
+    color: var(--text-light);
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9em;
+}
+
 footer p {
-    margin: 0;
-    font-size: 1em; /* Texto ligeramente más grande */
-    opacity: 0.9; /* Un poco menos transparente */
+    margin: 5px 0;
 }
 
-/* Responsividade de Ponta */
-@media (max-width: 1024px) {
-    h2 {
-        font-size: 3em;
+/* Responsividade (Media Queries) */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 15px;
     }
-    #hero h2 {
-        font-size: 4em;
-    }
-    #hero p {
-        font-size: 1.6em;
-    }
-    .servicos-lista {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-    }
-    #sobre .sobre-content {
-        gap: 30px;
-    }
-    header h1 .header-logo {
-        height: 65px; /* Ajuste do logo para telas médias */
-    }
-}
-
-@media (max-width: 768px) {
-    header .container {
+    .header-content {
         flex-direction: column;
         text-align: center;
     }
     nav ul {
-        margin-top: 20px;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     nav ul li {
-        margin: 10px 0;
+        margin: 5px 15px;
     }
-    section {
-        padding: 80px 0;
+    .hero-section {
+        height: 500px;
     }
-    h2 {
-        font-size: 2.5em;
+    .hero-text-block h1 {
+        font-size: 3em;
     }
-    #hero h2 {
-        font-size: 3.2em;
-    }
-    #hero p {
+    .hero-text-block p {
         font-size: 1.3em;
     }
-    .button {
-        padding: 15px 35px;
-        font-size: 1.1em;
+    .logo .header-logo {
+        height: 60px;
     }
-    .servico-item {
-        padding: 30px;
+    .servicos-grid, .portfolio-grid, .depoimentos-carousel {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
     }
-    .servico-item h3 {
-        font-size: 1.7em;
+    .depoimento-item {
+        max-width: 90%;
     }
-    #sobre .sobre-content {
-        flex-direction: column; /* Força quebra de linha para imagem e texto */
+    .quem-somos-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .quem-somos-text, .quem-somos-image {
+        max-width: 100%;
         text-align: center;
     }
-    #sobre .sobre-content img {
-        max-width: 280px;
-        height: 280px;
-        margin-bottom: 20px; /* Espaçamento abaixo da imagem quando empilhada */
+    .quem-somos-text h2, .quem-somos-text h2::after {
+        text-align: center;
+        left: 50%;
+        transform: translateX(-50%);
     }
-    #sobre .sobre-content p {
-        max-width: 90%; /* Permite que o texto ocupe mais largura em telas menores */
-        min-width: unset; /* Remove min-width para celular */
+    .contact-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .contact-form-wrapper, .contact-info-wrapper {
+        max-width: 100%;
+        text-align: center;
+    }
+    .contact-form-wrapper h2, .contact-form-wrapper h2::after, .contact-form-wrapper .section-description {
+        text-align: center;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .contact-info-wrapper p {
+        justify-content: center;
+    }
+    .social-icons {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-padding {
+        padding: 60px 0;
+    }
+    .hero-section {
+        height: 400px;
+    }
+    .hero-text-block h1 {
+        font-size: 2.5em;
+    }
+    .hero-text-block p {
         font-size: 1.1em;
     }
-    .contato-info p {
-        font-size: 1.4em;
-    }
-    header h1 .header-logo {
-        height: 55px; /* Ajuste do logo para telas menores (ex: tablets em retrato, celulares maiores) */
+    .logo .header-logo {
+        height: 60px;
     }
 }
 
 @media (max-width: 480px) {
-    header h1 {
-        font-size: 1.8em;
+    .logo .header-logo {
+        height: 50px;
     }
-    #hero {
-        padding: 120px 0;
+    nav ul li {
+        margin: 5px 10px;
+        font-size: 0.9em;
     }
-    #hero h2 {
-        font-size: 2.5em;
-    }
-    #hero p {
-        font-size: 1.1em;
-    }
-    .button {
-        padding: 12px 25px;
-        font-size: 1em;
-    }
-    h2 {
+    .hero-text-block h1 {
         font-size: 2em;
     }
-    .servico-item h3 {
-        font-size: 1.5em;
+    .hero-text-block p {
+        font-size: 1em;
     }
-    .contato-info p {
+    .button {
+        padding: 10px 25px;
+        font-size: 0.9em;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    .servico-item h3, .portfolio-info h3 {
         font-size: 1.2em;
     }
-    header h1 .header-logo {
-        height: 45px; /* Ajuste do logo para celulares pequenos */
+    .contact-info-wrapper p, .contact-form-wrapper label, .form-group input, .form-group textarea {
+        font-size: 0.9em;
+    }
+    .social-icons {
+        font-size: 1.8em;
+        margin-right: 15px;
     }
 }
